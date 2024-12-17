@@ -106,6 +106,12 @@ namespace TriInspector.Utilities
                 return true;
             }
 
+            if (type.IsGenericType && type.GetGenericTypeDefinition().ToString() == "System.Collections.Immutable.ImmutableList`1[T]")
+            {
+                elementType = type.GetGenericArguments().Single();
+                return true;
+            }
+
             elementType = null;
             return false;
         }
